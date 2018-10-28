@@ -126,8 +126,6 @@ int main(int argc, char **argv)
 	sigsetup();
 	log_open();
 
-	/* TODO: seccomp lockdown? */
-
 	while (running) {
 		diff = klogctl(KLOG_READ, log_buffer + count,
 			       sizeof(log_buffer) - 1 - count);
@@ -147,8 +145,10 @@ int main(int argc, char **argv)
 		for (;;) {
 			end = strchr(ptr, '\n');
 			if (end == NULL) {
-				count = strlen(ptr);
-				memmove(log_buffer, ptr, count);
+				if (ptr != log_buffer) {
+					count = strlen(ptr);
+					memmove(log_buffer, ptr, count + 1);
+				}
 				break;
 			}
 
@@ -163,7 +163,7 @@ int main(int argc, char **argv)
 					++ptr;
 			}
 
-			if (*ptr)
+			if (*ptr != '\0')
 				syslog(priority, "%s", ptr);
 			ptr = end;
 		}
