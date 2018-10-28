@@ -10,4 +10,4 @@ syslog_SOURCES = syslog.c protomap.c
 dist_man1_MANS = syslog.1
 bin_PROGRAMS = syslog
 sbin_PROGRAMS = usyslogd klogd
-EXTRA_DIST = LICENSE
+EXTRA_DIST = LICENSE README.md
