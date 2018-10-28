@@ -76,6 +76,10 @@ int mksock(const char *path);
 
 const char *level_id_to_string(int level);
 
-const char *facility_id_to_string(int level);
+const char *facility_id_to_string(int id);
+
+int level_id_from_string(const char *level);
+
+int facility_id_from_string(const char *fac);
 
 #endif /* LOGFILE_H */

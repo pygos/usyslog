@@ -17,3 +17,4 @@ config.h
 *~
 klogd
 usyslogd
+syslog

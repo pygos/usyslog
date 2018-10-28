@@ -1,6 +1,8 @@
 /* SPDX-License-Identifier: ISC */
 #include "syslogd.h"
 
+#include <string.h>
+
 typedef struct {
 	const char *name;
 	int id;
@@ -54,12 +56,30 @@ static const char *enum_to_name(const enum_map_t *map, int id)
 	return map->name;
 }
 
+static int enum_by_name(const enum_map_t *map, const char *name)
+{
+	while (map->name != NULL && strcmp(map->name, name) != 0)
+		++map;
+
+	return map->name == NULL ? -1 : map->id;
+}
+
 const char *level_id_to_string(int level)
 {
 	return enum_to_name(levels, level);
 }
 
-const char *facility_id_to_string(int level)
+const char *facility_id_to_string(int id)
 {
-	return enum_to_name(facilities, level);
+	return enum_to_name(facilities, id);
+}
+
+int level_id_from_string(const char *level)
+{
+	return enum_by_name(levels, level);
+}
+
+int facility_id_from_string(const char *fac)
+{
+	return enum_by_name(facilities, fac);
 }

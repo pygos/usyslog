@@ -1,0 +1,45 @@
+.TH syslog 1 "August 2018" "usyslog"
+.SH NAME
+syslog \- send a log message to the syslog daemon
+.SH SYNOPSIS
+.B syslog
+[options] message..
+.SH DESCRIPTION
+The syslog command concatenates all non option arguments to a single message
+that it sends to the syslog daemon.
+.SH OPTIONS
+.TP
+.BR \-h , " \-\-help"
+Display a brief help text, a list of available facilities, log levels, all the
+default setting and exit.
+.TP
+.BR \-V , " \-\-version"
+Print version information and exit.
+.TP
+.BR \-f , " \-\-facility " \fIfacility\fP
+Logging facility name or numeric identifier. Use
+.B \-\-help
+to get a list of all available facility names.
+.TP
+.BR \-l , " \-\-level " \fIlevel\fP
+A log level number from 0 to 8 with 8 being most severe, or a name from
+.I debug
+to
+.I emergency.
+Use
+.B \-\-help
+to get a list of all available log level names.
+.TP
+.BR \-i , " \-\-ident " \fIname\fP
+Program name to specify to syslog. If not set, "(shell)" is used as sensible
+default to indicate that the message came from the command line.
+.TP
+.BR \-c , " \-\-console"
+Try to write directly to the console if opening the syslog socket fails.
+.SH AVAILABILITY
+This program is part of the Pygos init system.
+.SH COPYRIGHT
+Copyright \(co 2018 David Oberhollenzer
+.br
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
