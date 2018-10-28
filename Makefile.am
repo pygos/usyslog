@@ -8,4 +8,4 @@ klogd_SOURCES = klogd.c
 
 bin_PROGRAMS =
 sbin_PROGRAMS = usyslogd klogd
-# EXTRA_DIST = README LICENSE
+EXTRA_DIST = LICENSE
