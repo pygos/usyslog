@@ -21,6 +21,8 @@ static int isleap(int year)
 
 static int mdays(int year, int month)
 {
+	if (month < 1 || month > 12)
+		return 0;
 	return (isleap(year) && month == 2) ? 29 : days[month - 1];
 }
 
