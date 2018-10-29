@@ -11,7 +11,7 @@
 
 
 #define SYSLOG_SOCKET "/dev/log"
-#define SYSLOG_PATH "/var/log"
+#define SYSLOG_PATH "/var/log/syslog"
 #define DEFAULT_USER "syslogd"
 #define DEFAULT_GROUP "syslogd"
 

@@ -10,7 +10,7 @@ forwards the parsed message to a modular backend interface.
 
 Currently, there is only one implementation of the backend interface that dumps
 the log messages into files in the processes working directory (by default
-`/var/log`).
+`/var/log/syslog`).
 
 A simple log rotation scheme has been implemented.
 
@@ -40,18 +40,11 @@ library and should *in theory* work on any modern GNU/Linux or BSD system.
 The facility IDs may need to be adjusted (it uses the ones from `usyslogd`).
 
 
-The file backend of `usyslogd` tries to take over ownership of `/var/log`
-and make it inaccessible for all other users. This may be an issue if some
-program tries to put its own log files there as non-root user, or programs
-that try to read from them as non-root (e.g. `utmp`, `btmp`, `wtmp`, `faillog`,
-`lastlog`).
-
-
 # The syslog implementation
 
 ## Security Considerations
 
-By default, the daemon switches its working directory to `/var/log`. The
+By default, the daemon switches its working directory to `/var/log/syslog`. The
 directory is created if it doesn't exist and the daemon always tries to
 change its mode to one that doesn't allow other users (except group members)
 to access the directory.

@@ -175,10 +175,24 @@ fail:
 
 static int chroot_setup(void)
 {
-	if (mkdir(SYSLOG_PATH, 0750)) {
-		if (errno != EEXIST) {
-			perror("mkdir " SYSLOG_PATH);
-			return -1;
+	size_t i, len = strlen(SYSLOG_PATH);
+	char *buffer = alloca(len + 1);
+
+	memcpy(buffer, SYSLOG_PATH, len + 1);
+
+	for (i = 0; i < len; ++i) {
+		if (buffer[i] == '\0' || buffer[i] == '/') {
+			buffer[i] = '\0';
+
+			if (mkdir(buffer, 0755)) {
+				if (errno != EEXIST) {
+					perror(buffer);
+					return -1;
+				}
+			}
+
+			if (i < (len - 1))
+				buffer[i] = '/';
 		}
 	}
 
