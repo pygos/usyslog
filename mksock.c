@@ -28,6 +28,8 @@ int mksock(const char *path)
 
 	strcpy(un.sun_path, path);
 
+	unlink(un.sun_path);
+
 	if (bind(fd, (struct sockaddr *)&un, sizeof(un))) {
 		errmsg ="bind";
 		goto fail_errno;
