@@ -40,6 +40,16 @@ library and should *in theory* work on any modern GNU/Linux or BSD system.
 The facility IDs may need to be adjusted (it uses the ones from `usyslogd`).
 
 
+# Building and installing
+
+This package uses autotools. If you downloaded a distribution tar ball, simply
+run the `configure` script and then `make` after the Makefile has been
+generated.
+
+When working with the git tree, run the `autogen.sh` script to generate the
+configure script and friends.
+
+
 # The syslog implementation
 
 ## Security Considerations
