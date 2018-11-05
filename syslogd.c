@@ -180,7 +180,10 @@ static int chroot_setup(void)
 
 	memcpy(buffer, SYSLOG_PATH, len + 1);
 
-	for (i = 0; i < len; ++i) {
+	for (i = 0; i <= len && buffer[i] == '/'; ++i)
+		;
+
+	for (; i <= len; ++i) {
 		if (buffer[i] == '\0' || buffer[i] == '/') {
 			buffer[i] = '\0';
 
